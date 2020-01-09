@@ -399,6 +399,10 @@ class WebpackAssetsManifest
         for ( const key in data ) {
           if ( ! this.has(key) ) {
             this.set(key, data[ key ]);
+          } else if (key === this.options.entrypointsKey) {
+            const result = Object.assign({}, this.assets[ key ], data[ key ]);
+
+            this.set(key, result);
           }
         }
       } catch (err) { // eslint-disable-line
@@ -471,7 +475,10 @@ class WebpackAssetsManifest
           this.setRaw( key, entrypoints[ key ] );
         }
       } else {
-        this.setRaw( this.options.entrypointsKey, entrypoints );
+        const existingEntrypoints = this.assets[ this.options.entrypointsKey ];
+        const mergedEntrypoints = Object.assign({}, existingEntrypoints || {}, entrypoints);
+
+        this.setRaw( this.options.entrypointsKey, mergedEntrypoints );
       }
     }
 
