@@ -50,7 +50,7 @@
     "lodash.get": "^4.0",
     "lodash.has": "^4.0",
     "mkdirp": "^1.0",
-    "schema-utils": "^2.0",
+    "schema-utils": "^3.0",
     "tapable": "^1.0",
     "webpack-sources": "^1.0"
   },
